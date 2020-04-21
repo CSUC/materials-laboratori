@@ -24,12 +24,12 @@ $table = array(
   array( 'db' => 'DESCOMPTE',  'dt' => 13 ),
   array( 'db' => 'PREU_FINAL',   'dt' => 14 )
 );
-
 //conection:
-$link = mysqli_connect("localhost","csuc","sergio2020","csucdb8") or die("Error " . mysqli_error($link));
+$config = parse_ini_file('../config.ini');
 
+$link = mysqli_connect($config['host'], $config['username'], $config['password'], $config['database']) or die("Error " . mysqli_error($link));
 $link->set_charset("utf8");
-
+//error_log("MySQL connection: " . mysqli_get_host_info($link)); 
 /* change character set to utf8 */
 /*  if (!$link->set_charset("utf8")) {
       error_log( printf("Error loading character set utf8: %s\n", $link->error) );
@@ -39,13 +39,13 @@ $link->set_charset("utf8");
 //$link->set_charset("utf8");
 //consultation:
 
-$query = "SELECT DISTINCT ".$table[$column]['db']." FROM articles3 ORDER BY ".$table[$column]['db']." ASC" or die("Error in the consult.." . mysqli_error($link));
+$query = "SELECT DISTINCT ".$table[$column]['db']." FROM articles ORDER BY ".$table[$column]['db']." ASC" or die("Error in the consult.." . mysqli_error($link));
 //error_log("query: " . $query);
 
 //execute the query.
 
 $result = $link->query($query);
-
+//error_log($result->num_rows); 
 //display information:
 
 $rows = array();
@@ -93,4 +93,5 @@ if($rows){
 
   echo json_encode( $rows,  JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES );
 }
+mysqli_close($con);
 ?>

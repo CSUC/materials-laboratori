@@ -62,11 +62,13 @@ $columns = array(
 );
 
 // SQL server connection information
+$config = parse_ini_file('../config.ini');
+
 $sql_details = array(
-    'user' => 'csuc',
-    'pass' => 'sergio2020',
-    'db'   => 'csucdb',
-    'host' => 'localhost'
+    'user' => $config['username'],
+    'pass' => $config['password'],
+    'db'   => $config['database'],
+    'host' => $config['host']
 );
 
 

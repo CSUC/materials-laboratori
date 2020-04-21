@@ -83,7 +83,7 @@ CREATE TABLE `articles` (
   `CODI_FABRICANT` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `CPV` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `FORMAT_VENDA` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `DENOMINACIO_ARTICLE` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `DENOMINACIO_ARTICLE` varchar(1024) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `MARCA` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `TIPUS_IVA` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `PREU_CATALEG` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -106,6 +106,13 @@ CREATE TABLE `articles` (
   KEY `idx_articles_DESCOMPTE` (`DESCOMPTE`),
   KEY `idx_articles_PREU_FINAL` (`PREU_FINAL`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1646473 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `statistics_lot` (
+  `num_lot` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+  `num_records` int DEFAULT NULL,
+  `percent_of_total` decimal(5,2) DEFAULT NULL,
+  PRIMARY KEY (`num_lot`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
 ```
 
 ### Procés d'importació de fitxers .csv

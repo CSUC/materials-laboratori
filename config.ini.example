@@ -1,0 +1,5 @@
+[database]
+host = "hostname"
+username = "DB_user"
+password = "DB_password"
+database = "DB_name"
