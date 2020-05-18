@@ -67,7 +67,7 @@
  </head>
  <body class="bg-light">
 	<nav class="navbar navbar-custom"> 
-		<a class="navbar-brand" href="#">
+		<a class="navbar-brand" href="javascript:void(0)" onclick="window.location.reload()">
     			<img src="csuc_logo_blanc.png" width="50" height="30" class="d-inline-block align-top" alt="Logo del CSUC">&nbsp;
     			Catàleg CSUC
   		</a>
