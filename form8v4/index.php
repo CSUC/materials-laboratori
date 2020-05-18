@@ -28,26 +28,66 @@
   #stats-table th {
     text-align: center; 
   }
-  </style>
+  .dropdown:hover>.dropdown-menu {
+    display: block;
+  }
+  .navbar-custom {
+     background-color:#004356;
+  }
+  .navbar-custom > a,  
+  .navbar-custom > li > a {
+     color: white; 
+  }
+  .navbar-custom > a:hover,
+  .navbar-custom > li > a {
+     color: lightgrey; 
+  }
+  .dropdown {
+     list-style: none; 
+  }
 
+  //Navbar styles
+  .navbar .nav-item:not(:last-child) {
+    margin-right: 35px;
+  }
+ 
+  .dropdown-toggle::after {
+    transition: transform 0.15s linear; 
+  }
+ 
+  .show.dropdown .dropdown-toggle::after {
+    transform: translateY(3px);
+  }
+
+  .dropdown-menu {
+    margin-top: 0;
+  }
+  </style>
 
  </head>
  <body class="bg-light">
+	<nav class="navbar navbar-custom"> 
+		<a class="navbar-brand" href="#">
+    			<img src="csuc_logo_blanc.png" width="50" height="30" class="d-inline-block align-top" alt="Logo del CSUC">&nbsp;
+    			Catàleg CSUC
+  		</a>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        			Enllaços rellevants
+      			</a>
+			<div class="dropdown-menu">
+        			<a class="dropdown-item" href="https://unidisc.csuc.cat/index.php/s/juTRJwz3kCv9wBI">Catàlegs per proveïdor</a>
+      				<a class="dropdown-item" href="https://www.csuc.cat/es/compras-conjuntas/material-de-laboratorio">Anunci acord marc</a>
+			</div>
+		</li>
+	</nav>
 	<div class="container">
 		<div class="py-5 text-center">
-			<h1>Catàleg CSUC</h1>
-			<p class="lead">
-				Aplicació relacionada: <a href="https://unidisc.csuc.cat/index.php/s/IMinZnDeNUHgREe">Catàlegs PDF</a> 
-			</p>
-			<p>
-				Desenvolupat per la URV amb la col·laboració del CSUC. 
-				<br> 
-				<i>Aquesta aplicació està en fase de desenvolupament i anirem afegint noves funcionalitat.</i>
-			</p>
+			<h1>Aplicació Materials de Laboratori CSUC</h1>
 		</div>
 	</div>
 	
-<div style="padding-left:10px">	 
+<div style="padding-left:20px">	 
  <table id="articles" class="display table table-striped table-bordered" style="width:100%">
          <thead>
              <tr>
@@ -113,7 +153,7 @@
                         <h1>Número de registres per lot</h1>
                 </div>
 </div>
-<table id="stats-table" class="table table-striped table-bordered" style="margin: 0 auto; width: 50%"> 
+<table id="stats-table" class="table table-striped table-bordered" style="margin: 0 auto; width: 30%"> 
 	<tr>
 		<th>Núm. lot</th>
 		<th>Número de registres</th>
@@ -129,7 +169,7 @@
 	?>
 			<tr>
 				<td><?php echo $row[0]; ?></td>
-				<td><?php echo $row[1]; ?></td>
+				<td><?php echo number_format(intval($row[1]), 0, ",", "."); ?></td>
 				<td><?php echo $row[2]; ?>%</td>				
 			</tr>
 	<?php 
@@ -317,7 +357,8 @@ $(document).ready(function()  {
                   "sortAscending":  ": Activar per ordenar ascedentment",
                   "sortDescending": ": Activar per ordenar descedentment"
               }
-         }
+         }, 
+         "pageLength": 25 
     });
 
 
